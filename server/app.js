@@ -14,14 +14,14 @@ const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
 
 // otherwise use this
 // delete before upload to GitHub
-//const dbURL = '';
+// const dbURL = '';
 
 // attempt connection to MongoDB
 mongoose.connect(dbURL, (err) => {
-    if(err) {
-        console.log('Could not connect to database');
-        throw err;
-    }
+  if (err) {
+    console.log('Could not connect to database');
+    throw err;
+  }
 });
 
 const router = require('./router.js');
@@ -33,7 +33,7 @@ app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
 app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
 app.use(bodyParser.urlencoded({
-    extended: true,
+  extended: true,
 }));
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -44,8 +44,8 @@ router(app);
 
 // attempt to start page
 app.listen(port, (err) => {
-    if(err) {
-        throw err;
-    }
-    console.log(`Listening on port ${port}`);
+  if (err) {
+    throw err;
+  }
+  console.log(`Listening on port ${port}`);
 });
