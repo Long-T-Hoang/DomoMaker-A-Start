@@ -10,11 +10,11 @@ const expressHandlebars = require('express-handlebars');
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // use this when connected to Heroku
-//const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
+const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
 
 // otherwise use this
 // delete before upload to GitHub
-const dbURL = 'mongodb+srv://lth1092:Vrael13071527@cluster0.ywnt7.mongodb.net/DomoMaker?retryWrites=true&w=majority';
+//const dbURL = '';
 
 // attempt connection to MongoDB
 mongoose.connect(dbURL, (err) => {
