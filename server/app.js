@@ -6,15 +6,16 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
+const session = require('express-session');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // use this when connected to Heroku
-const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
+// const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
 
 // otherwise use this
 // delete before upload to GitHub
-// const dbURL = '';
+const dbURL = 'mongodb+srv://lth1092:Vrael13071527@cluster0.ywnt7.mongodb.net/DomoMaker?retryWrites=true&w=majority';
 
 // attempt connection to MongoDB
 mongoose.connect(dbURL, (err) => {
@@ -34,6 +35,12 @@ app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
 app.use(bodyParser.urlencoded({
   extended: true,
+}));
+app.use(session({
+  key: 'sessionid',
+  secret: 'Domo Arigato',
+  resave: true,
+  saveUninitialized: true,
 }));
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
